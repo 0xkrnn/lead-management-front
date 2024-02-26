@@ -14,11 +14,11 @@ function Landingpage() {
         <div className='container'>
             <nav className='navbar'>
                 <h3 className='logo'> Lead Manager</h3>
-                <ul>
+                {/* <ul>
                     <li className='lists'> <Link className='links'> Teams </Link></li>
                     <li className='lists'> <Link className='links'> Documentation </Link></li>
                     <li className='lists'> <Link className='links'> Pricing </Link> </li>
-                </ul>
+                </ul> */}
                 <button className='button' onClick={() => navigate("/register")}> Register </button>
             </nav>
 
