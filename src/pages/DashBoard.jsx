@@ -3,14 +3,15 @@ import Cards from '../components/Cards';
 import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 import { Bar } from 'react-chartjs-2';
+import url from "../utils/url"
 
 function DashBoard(props) {
 
     const [res, setRes] = useState([])
 
     const fetchData = async () => {
-        const result = await fetch("http://localhost:3500/leads")
-        const data = await result.json()
+        const result = await fetch(`${url}/leads`)
+        const data = await result.json(`${url}/leads`)
         setRes(data)
     }
 

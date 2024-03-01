@@ -5,6 +5,7 @@ import Model from '../components/Model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import EditLeadModels from '../components/EditLeadModel';
+import url from "../utils/url"
 
 function Leads() {
 
@@ -12,15 +13,17 @@ function Leads() {
     const [editLeadModel, setEditModel] = useState(false);
 
     const [allLeads, setAllLeads] = useState("");
-    const [defaultVal,setDefaultVal] = useState([])
+    const [defaultVal, setDefaultVal] = useState([])
 
-    const handleLeadEdit =  (lead) => {
+    const handleLeadEdit = (lead) => {
         setEditModel(true);
         setDefaultVal(lead)
     }
 
+    console.log(allLeads)
+
     const fetchData = async () => {
-        const result = await fetch("http://127.0.0.1:3500/leads", {
+        const result = await fetch(`${url}/leads`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -45,6 +48,7 @@ function Leads() {
                     <h1>All Leads</h1>
                     <button className='button' onClick={() => setOpenModel(true)}> Add new Lead</button>
                 </div>
+
                 <table className='table'>
                     <thead>
                         <tr>
@@ -58,7 +62,7 @@ function Leads() {
                         </tr>
                     </thead>
                     <tbody >
-                        {allLeads
+                        {allLeads.length > 0
                             ? allLeads.map((lead, index) => {
                                 return (
                                     <tr key={lead._id}>
@@ -70,19 +74,21 @@ function Leads() {
                                         <td> {lead.date_of_creation} </td>
                                         <td className='edit' onClick={() => handleLeadEdit(lead)}><FontAwesomeIcon icon={faPenToSquare} /></td>
                                     </tr>
+
                                 )
                             })
-                            : <tr> No data </tr>
+                            : <tr >
+                                <td colSpan={7}> No data to show </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
-
                 <div>
-                    <Model open={{ openModel, setOpenModel,fetchData }} />
+                    <Model open={{ openModel, setOpenModel, fetchData }} />
                 </div>
 
                 <div>
-                    <EditLeadModels open={{editLeadModel,setEditModel,defaultVal,fetchData}} />
+                    <EditLeadModels open={{ editLeadModel, setEditModel, defaultVal, fetchData }} />
                 </div>
 
             </div >
@@ -124,6 +130,10 @@ const Container = styled.div`
         background-color: #101111;
         color: white;
     }    
+
+    .no-data{
+        text-align : center;
+    }
 
 `
 

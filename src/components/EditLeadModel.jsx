@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import url from "../utils/url"
 
 function EditLeadModels({ open }) {
 
@@ -38,7 +39,7 @@ function EditLeadModels({ open }) {
 
 
         console.log(newLead);
-        const result = await fetch("http://127.0.0.1:3500/leads", {
+        const result = await fetch(`${url}/leads`, {
             method: "PATCH",
             headers: {
                 'Accept': 'application/json',
@@ -59,7 +60,7 @@ function EditLeadModels({ open }) {
         const confirmation = confirm("Do you want to delete ")
 
         if (confirmation) {
-            await fetch(`http://127.0.0.1:3500/leads/${defaultVal._id}`, {
+            await fetch(`${url}/leads/${defaultVal._id}`, {
                 method: "DELETE",
             });
 
@@ -113,7 +114,7 @@ function EditLeadModels({ open }) {
                 </div>
 
                 <div className="form-group">
-                    <div>
+                    <div className='flex row btns'>
                         <button className="btn" type='button' onClick={() => handleEditLead()} > Edit </button>
                         <button className="btn" type='button' onClick={() => handleDeleteLead()} > Delete </button>
                     </div>
@@ -199,6 +200,10 @@ const Container = styled.div`
                 color: white;
                 background-color: #61e361;
                 border-color:white ;
+            }
+
+            .btns{
+                gap : 10px;
             }
         }
 

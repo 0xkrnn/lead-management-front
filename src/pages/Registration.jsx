@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
+import url from "../utils/url"
 
 function Registration() {
+
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
@@ -21,7 +23,7 @@ function Registration() {
     async function onLogin() {
         if (email && pwd) {
             if (validateEmail(email)) {
-                const result = await fetch("http://127.0.0.1:3500/api/user/register", {
+                const result = await fetch(`${url}/api/user/register`, {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -39,7 +41,8 @@ function Registration() {
                     setEmail("")
                     setPwd("")
                     setValidator("")
-                    // Create Registration success popup    
+                    // Create Registration success popup  
+                    alert("registerd succesfully")  
                     navigate("/login")
 
                 }

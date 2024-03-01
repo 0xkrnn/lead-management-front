@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
+import url from "../utils/url"
 
 function Login() {
 
@@ -22,13 +23,13 @@ function Login() {
     async function onLogin() {
         if (email && pwd) {
             if (validateEmail(email)) {
-                const result = await fetch("http://127.0.0.1:3500/api/user/login", {
+                const result = await fetch(`${url}/api/user/login`, {
                     method: "POST",
-                    credentials: 'include',
+                    // credentials: 'include',
                     redirect: 'follow',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         email,

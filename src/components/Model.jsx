@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import url from "../utils/url"
 
 function Model({ open }) {
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [status, setStatus] = useState("");
-    const [organization, setOrgansization] = useState("");
+    const [name, setName] = useState(" ");
+    const [email, setEmail] = useState(" ");
+    const [status, setStatus] = useState(" ");
+    const [organization, setOrgansization] = useState(" ");
 
 
 
@@ -24,9 +25,9 @@ function Model({ open }) {
             organization
         }
 
-        console.log(newLead);
+        // console.log(newLead);
 
-        const result = await fetch("http://127.0.0.1:3500/leads", {
+        const result = await fetch(`${url}/leads`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
